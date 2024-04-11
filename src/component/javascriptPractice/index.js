@@ -35,8 +35,24 @@ const transformToObjects = (numberArray) => {
 };
 
 const inputArray = [1, 2, 3];
+
 const resultArray = transformToObjects(inputArray);
 
+const [a,b] = [10,20]
+console.log(a);
+console.log(b);
+
+const userData ={
+  name :"Max",
+  age:34
+}
+
+const extendedUser = {
+  isAdmin: true,
+  ...userData
+} 
+
+console.log(extendedUser);
 
 const JavascriptPractice = () => {
   return (
