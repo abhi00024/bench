@@ -5,7 +5,7 @@ import JsxTab from "./dependencies/jsx";
 import PropsTab from "./dependencies/props";
 
 const InteractiveTabs = () => {
-    const [selectedTab, setSelectedTab] = useState("ComponentsTab");
+    const [selectedTab, setSelectedTab] = useState();
 
     const handleTabSelect = (tabName) => {
         setSelectedTab(tabName);
@@ -28,10 +28,15 @@ const InteractiveTabs = () => {
                     )}
                 </menu>
                 <section id="tab-content">
-                    {selectedTab === "ComponentsTab" && <ComponentsTab />}
-                    {selectedTab === "JsxTab" && <JsxTab />}
-                    {selectedTab === "PropsTab" && <PropsTab />}
-                    {selectedTab === "StateTab" && <StateTab />}
+                    {!selectedTab && <p>Please select a topic.</p>}
+                    {selectedTab && (
+                        <>
+                            {selectedTab === "ComponentsTab" && <ComponentsTab />}
+                            {selectedTab === "JsxTab" && <JsxTab />}
+                            {selectedTab === "PropsTab" && <PropsTab />}
+                            {selectedTab === "StateTab" && <StateTab />}
+                        </>
+                    )}
                 </section>
             </main>
         </>
