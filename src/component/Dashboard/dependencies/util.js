@@ -2,6 +2,8 @@ import componentsImg from "../../../assest/components.png";
 import propsImg from '../../../assest/config.png';
 import jsxImg from '../../../assest/jsx-ui.png';
 import stateImg from '../../../assest/state-mgmt.png';
+import HomeIcon from '../../../assest/homeicon.svg';
+import PlusIcon from '../../../assest/pulsicon.svg';
 
 export const CORE_CONCEPTS = [
   {
@@ -28,4 +30,40 @@ export const CORE_CONCEPTS = [
     description:
       'React-managed data which, when changed, causes the component to re-render & the UI to update.',
   },
+];
+  
+
+// export function Button({ children, className, mode = 'filled', Icon, ...props}) {
+//   let cssClasses = `button ${mode}-button`;
+ 
+//   if (Icon) {
+//     cssClasses += ' icon-button';
+//   }
+ 
+//   if (className) {
+//     cssClasses += ' ' + props.className;
+//   }
+ 
+//   return (
+//     <button className={cssClasses} {...props}>
+//       {Icon && (
+//         <span className="button-icon">
+//           <Icon />
+//         </span>
+//       )}
+//       <span>{children}</span>
+//     </button>
+//   );
+// }
+
+
+export const buttons = [
+  { text: "Default", mode: undefined,className:"button filled-button"},
+  { text: "Filled (Default)", mode: "filled" ,className:"button  filled-button"},
+  { text: "Outline", mode: "outline",className:"button outline-button" },
+  { text: "Text", mode: "text",className:"button text-button" },
+  { text: "Home", mode: undefined, icon: HomeIcon,className:"button filled-button icon-button" },
+  { text: "Add", mode: "text", icon: PlusIcon,className:"button text-button icon-button" },
+  { text: "Disabled", mode: "filled", disabled: true,className:"button filled-button" },
+  { text: "Click me", onClick: () => console.log('Clicked!'),className:"button filled-button"}
 ];
