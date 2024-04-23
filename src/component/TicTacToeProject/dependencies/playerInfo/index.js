@@ -1,9 +1,14 @@
 import React, { useState } from 'react'
 
 
-const Player = ({ name, symbol }) => {
+const Player = ({ initialName, symbol }) => {
 
+    const [isPlayerName,setisPlayerName]=useState(initialName);
     const [isEdit, setIsEdit] = useState(false);
+
+    const onHandleChange =(e)=>{
+        setisPlayerName(e.target.value)
+    }
 
     const editButton = () => {
         setIsEdit((isEdit) => !isEdit)
@@ -11,9 +16,9 @@ const Player = ({ name, symbol }) => {
 
     const playerName = () => {
         if (isEdit) {
-            return <input type='text' value={name} required />
+            return <input type='text' value={isPlayerName} required onChange={onHandleChange} />
         } else {
-            return <span className="player-name">{name}</span>
+            return <span className="player-name">{isPlayerName}</span>
         }
     }
 
