@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import gameLogo from "../../assest/game-logo.png"
 import "./index.css"
 import Player  from "./dependencies/playerInfo";
 import GameBoard from "./dependencies/GameBoard";
 
 const TicTacToe = () => {
-    
+    const [activePlayer, setActivePlayer] = useState('X');
+
+    const handleSelectSquare=()=>{
+        setActivePlayer((currActivePlayer)=>currActivePlayer==='X'? 'O':"X");
+    }
+
     return (
         <>
             <header>
@@ -13,12 +18,12 @@ const TicTacToe = () => {
                 <h1>TicTacToe</h1>
             </header>
             <main>
-                <div id="game-container">
-                    <ol id="players">
-                   <Player initialName="Player 1" symbol ="X"/>
-                   <Player initialName="Player 2" symbol ="O"/>
+                <div id="game-container" >
+                    <ol id="players" className="highlight-player">
+                   <Player initialName="Player 1" symbol ="X" isActive={activePlayer==="X"}/>
+                   <Player initialName="Player 2" symbol ="O" isActive={activePlayer==="O"}/>
                     </ol>
-                    <GameBoard />
+                    <GameBoard onSelectSquare={handleSelectSquare} activePlayerSymbol={activePlayer} />
                 </div>
             </main>
         </>
