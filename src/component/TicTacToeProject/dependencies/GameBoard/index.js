@@ -1,47 +1,34 @@
-import React, { useState } from 'react'
-import { initialBoard } from '../util'
+import React from "react";
 
 const GameBoard = (props) => {
-    
-    const {
-        onSelectSquare,
-        activePlayerSymbol
-    }=props
+  const { onSelectSquare, board } = props;
 
-    const [gameBoard, setgameBoard] = useState(initialBoard);
+  return (
+    <>
+      <ol id="game-board">
+        {board.map((row, rowIndex) => {
+          return (
+            <li key={rowIndex}>
+              <ol>
+                {row.map((playerSymbol, colIndex) => {
+                  return (
+                    <li key={colIndex}>
+                      <button
+                        onClick={() => onSelectSquare(rowIndex, colIndex)}
+                        disabled={playerSymbol !== null}
+                      >
+                        {playerSymbol}
+                      </button>
+                    </li>
+                  );
+                })}
+              </ol>
+            </li>
+          );
+        })}
+      </ol>
+    </>
+  );
+};
 
-    const handleSelectSquare=(rowIndex,colIndex)=>{
-        setgameBoard((prevGameBoard)=> {
-            const updateBoard =[...prevGameBoard.map(innerArray=>[...innerArray])]
-            updateBoard[rowIndex][colIndex] = activePlayerSymbol;
-            return updateBoard
-        });
-        onSelectSquare()
-    }
-
-    return (
-        <>
-            <ol id='game-board'>
-                {
-                    gameBoard.map((row, rowIndex) => {
-                        return(
-                        <li key={rowIndex}>
-                            <ol>
-                                {row.map((playerSymbol,colIndex)=>{
-                                    return(
-                                    <li key={colIndex}>
-                                        <button onClick={()=>handleSelectSquare(rowIndex,colIndex)}>{playerSymbol}</button>
-                                    </li>
-                                    )
-                                })}
-                            </ol>
-                        </li>
-                        )
-                    })
-                }
-            </ol>
-        </>
-    )
-}
-
-export default GameBoard
+export default GameBoard;
