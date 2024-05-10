@@ -56,13 +56,24 @@ export const CORE_CONCEPTS = [
 //   );
 // }
 
+const onClickFilled =()=>{
+  console.log('Filled button clicked');
+}
+
+const onClickOutline =()=>{
+  console.log('Outline button clicked');
+}
+
+const onClickHome =()=>{
+  console.log('Home button clicked');
+}
 
 export const buttons = [
   { text: "Default", mode: undefined,className:"button filled-button"},
-  { text: "Filled (Default)", mode: "filled" ,className:"button  filled-button"},
-  { text: "Outline", mode: "outline",className:"button outline-button" },
+  { text: "Filled (Default)", mode: "filled" ,className:"button  filled-button", onClick:() => onClickFilled()},
+  { text: "Outline", mode: "outline",className:"button outline-button",onClick:()=> onClickOutline() },
   { text: "Text", mode: "text",className:"button text-button" },
-  { text: "Home", mode: undefined, icon: HomeIcon,className:"button filled-button icon-button" },
+  { text: "Home", mode: undefined, icon: HomeIcon,className:"button filled-button icon-button" ,onClick: () => onClickHome() },
   { text: "Add", mode: "text", icon: PlusIcon,className:"button text-button icon-button" },
   { text: "Disabled", mode: "filled", disabled: true,className:"button filled-button" },
   { text: "Click me", onClick: () => console.log('Clicked!'),className:"button filled-button"}

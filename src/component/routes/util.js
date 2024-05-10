@@ -9,8 +9,9 @@ import React from 'react';
 // const PropsTab = React.lazy(()=> import("../Dashboard/dependencies/InterractiveTabs/dependencies/props"));
 // const StateTab = React.lazy(()=> import("../Dashboard/dependencies/InterractiveTabs/dependencies/state"));
 // const Project =React.lazy(()=>import('../TicTacToeProject'))
-// const Project =React.lazy(()=>import('../InvestmentCalculator'))
-const Project =React.lazy(()=>import('../SampleLoginProject'))
+// const Project = React.lazy(()=>import('../InvestmentCalculator'))
+// const Project =React.lazy(()=>import('../SampleLoginProject'))
+const Project =React.lazy(()=>import('../ShoppingProject'))
 
 
 export const ROUTES = [

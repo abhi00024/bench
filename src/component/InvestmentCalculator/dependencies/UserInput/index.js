@@ -13,11 +13,11 @@ const UserInput = () => {
 
     const inputIsValid =userInput.duration>=1;
 
-    const handleChange=(newValue,inputIdentifier)=>{
+    const handleChange=(newValue, inputIdentifier)=>{
         setUserInput(prevUserInput=>{
             return{
                 ...prevUserInput,
-                [inputIdentifier]: +newValue
+                [inputIdentifier.toLowerCase()]: +newValue
             }
         })
     }
@@ -26,10 +26,15 @@ const UserInput = () => {
         <>
             <section id='user-input'>
                 <div className='input-group'>
-                    {inputText.map((item) => ( 
-                        <p> 
+                    {inputText.map((item) => (
+                        <p key={item.text}>
                             <label >{item.text}</label>
-                            <input value={userInput[item.text]} onChange={(e)=>{handleChange(item.text,e.target.value)}} type={item.number} required />
+                            <input
+                                value={userInput[item.text.toLowerCase()]}
+                                onChange={(e) => { handleChange(e.target.value, item.text) }}
+                                type={item.type}
+                                required
+                            />
                         </p>
                     ))}
                 </div>
