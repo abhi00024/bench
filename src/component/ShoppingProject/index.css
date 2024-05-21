@@ -126,6 +126,19 @@ h1 {
   background: #f5b744;
 }
 
+
+#modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* semi-transparent black background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #modal {
   width: 30%;
   background: #d3b17b;
@@ -135,8 +148,8 @@ h1 {
   animation: fade-slide-in-from-top 0.3s ease-in-out;
 }
 
-#modal::backdrop {
-  background: rgba(0, 0, 0, 0.65);
+#modal-content {
+  padding: 20px;
 }
 
 #modal h2 {

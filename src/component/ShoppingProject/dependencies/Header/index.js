@@ -1,19 +1,50 @@
-import React from 'react';
-import Logo from "../../../../assest/logo1.png"
+import React, { useContext } from "react";
+import CartModal from "../CartModal";
+import {CartContext} from "../../store/ShoppingCart"
 
+const Header = (props) => {
 
+  const { setIsModalOpen, isModalOpen } = props
 
-const Header = () => {
+  const { items } = useContext(CartContext);
+  const cartQuantity = items.length;
+
+  const handleOpenCartClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  let modalActions = (
+    <>
+      <button onClick={handleCloseModal}>Close</button>
+      <button>Checkout</button>
+    </>
+  );
+
+  if (cartQuantity === 0) {
+    modalActions = <button onClick={handleCloseModal}>Close</button>;
+  }
 
   return (
     <>
+      {isModalOpen && (
+        <CartModal
+          onUpdateCartItemQuantity={cartQuantity}
+          title="Your Cart"
+          actions={modalActions}
+          handleCloseModal={handleCloseModal}
+        />
+      )}
       <header id="main-header">
         <div id="main-title">
-          <img src={Logo} alt="Elegant model" />
+          <img src="logo.png" alt="Elegant model" />
           <h1>Elegant Context</h1>
         </div>
         <p>
-          <button>Cart</button>
+          <button onClick={handleOpenCartClick}>Cart {cartQuantity}</button>
         </p>
       </header>
     </>
@@ -21,3 +52,5 @@ const Header = () => {
 };
 
 export default Header;
+
+

@@ -1,11 +1,14 @@
-import React from 'react';
+import React,{useContext} from 'react';
+import {CartContext} from "../../store/ShoppingCart"
 
-const Cart = ({ items, onUpdateItemQuantity }) => {
+const Cart = () => {
+  const {items ,UpdateItemQuantity} = useContext(CartContext);
   const totalPrice = items.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
   );
   const formattedTotalPrice = `$${totalPrice.toFixed(2)}`;
+
 
   return (
     <div id="cart">
@@ -22,11 +25,11 @@ const Cart = ({ items, onUpdateItemQuantity }) => {
                   <span> ({formattedPrice})</span>
                 </div>
                 <div className="cart-item-actions">
-                  <button onClick={() => onUpdateItemQuantity(item.id, -1)}>
+                  <button onClick={() => UpdateItemQuantity(item.id, -1)}>
                     -
                   </button>
                   <span>{item.quantity}</span>
-                  <button onClick={() => onUpdateItemQuantity(item.id, 1)}>
+                  <button onClick={() => UpdateItemQuantity(item.id, 1)}>
                     +
                   </button>
                 </div>

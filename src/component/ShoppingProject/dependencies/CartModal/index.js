@@ -1,31 +1,25 @@
-import { forwardRef, useImperativeHandle, useRef } from 'react';
-import { createPortal } from 'react-dom';
-import Cart from './Cart';
+import React from 'react';
+import Cart from '../Cart';
 
-const CartModal = forwardRef(function Modal(
-  { cartItems, onUpdateCartItemQuantity, title, actions },
-  ref
-) {
-  const dialog = useRef();
+const CartModal = (props) => {
 
-  useImperativeHandle(ref, () => {
-    return {
-      open: () => {
-        dialog.current.showModal();
-      },
-    };
-  });
+  const { title, actions, handleCloseModal } = props
 
-  return createPortal(
-    <dialog id="modal" ref={dialog}>
-      <h2>{title}</h2>
-      <Cart items={cartItems} onUpdateItemQuantity={onUpdateCartItemQuantity} />
-      <form method="dialog" id="modal-actions">
-        {actions}
-      </form>
-    </dialog>,
-    document.getElementById('modal')
+  return (
+    <>
+      <div id="modal-overlay" onClick={handleCloseModal}>
+        <div id="modal" onClick={(e) => e.stopPropagation()}>
+          <div id="modal-content">
+            <h2>{title}</h2>
+            <Cart/>
+            <form method="dialog" id="modal-actions">
+              {actions}
+            </form>
+          </div>
+        </div>
+      </div>
+    </>
   );
-});
+};
 
 export default CartModal;
